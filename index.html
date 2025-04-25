@@ -73,7 +73,7 @@
 <body>
     <div class="cat-watermark">CAT CALCULATOR</div>
     <div class="ui-dialog ui-corner-all ui-widget ui-widget-content ui-front"
-        style="position: absolute; width: 225px; top: 205.65px; left: 328px;">
+        style="position: absolute; width: 225px;">
         <div class="ui-dialog-titlebar ui-corner-all ui-widget-header ui-helper-clearfix ui-draggable-handle">
             <span class="ui-dialog-title">Calculator</span>
             <button type="button" class="ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close"
@@ -165,10 +165,27 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
     <script src="./calciLogic.js"></script>
     <script>
+        function centerCalculator() {
+            var $dialog = $('.ui-dialog');
+            var winWidth = $(window).width();
+            var winHeight = $(window).height();
+            var dialogWidth = $dialog.outerWidth();
+            var dialogHeight = $dialog.outerHeight();
+            var left = Math.max(0, (winWidth - dialogWidth) / 2);
+            var top = Math.max(0, (winHeight - dialogHeight) / 2);
+            $dialog.css({ left: left + 'px', top: top + 'px' });
+        }
+
         $(function () {
             $('.ui-dialog').draggable({
                 handle: '.ui-dialog-titlebar'
             });
+            centerCalculator();
+        });
+
+        // Recenter on window resize (optional, for better UX)
+        $(window).on('resize', function () {
+            centerCalculator();
         });
     </script>
 </body>
