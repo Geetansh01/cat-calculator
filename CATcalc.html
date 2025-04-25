@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAT Calculator - CBT Exam Practice Tool</title>
+    <meta name="description" content="Practice with a CAT calculator that simulates the on-screen calculator available in the CAT CBT exam. Perfect for candidates preparing for the CAT exam at home.">
+    <meta name="keywords" content="CAT calculator, CAT exam calculator, CAT CBT calculator, on-screen calculator, CAT practice, CAT exam, CAT 2024, CAT online calculator, CAT mock test tools">
+    <meta name="author" content="Your Name">
+    <link rel="canonical" href="https://yourdomain.com/cat-calculator">
+    <link href="./jquery-ui.css" rel="stylesheet">
+    <link href="./style.css" rel="stylesheet">
+    <style>
+        body {
+            background: #000;
+            margin: 0;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .cat-watermark {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            z-index: 0;
+            transform: translate(-50%, -50%) rotate(-20deg);
+            font-size: 7vw;
+            color: #222;
+            opacity: 0.13;
+            pointer-events: none;
+            user-select: none;
+            white-space: nowrap;
+            font-family: Arial, sans-serif;
+            letter-spacing: 0.2em;
+        }
+
+        .cat-disclaimer {
+            color: #aaa;
+            background: transparent;
+            font-size: 0.95em;
+            text-align: center;
+            margin: 40px 0 10px 0;
+            padding: 0 10px;
+            z-index: 10;
+            position: relative;
+        }
+
+        .cat-disclaimer a {
+            color: #4fa3ff;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            .cat-watermark {
+                font-size: 13vw;
+            }
+        }
+    </style>
+    <!-- Google Analytics (replace G-XXXXXXXXXX with your GA4 Measurement ID) -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script> -->
+</head>
+
+<body>
+    <div class="cat-watermark">CAT CALCULATOR</div>
+    <div class="ui-dialog ui-corner-all ui-widget ui-widget-content ui-front"
+        style="position: absolute; width: 225px; top: 205.65px; left: 328px;">
+        <div class="ui-dialog-titlebar ui-corner-all ui-widget-header ui-helper-clearfix ui-draggable-handle">
+            <span class="ui-dialog-title">Calculator</span>
+            <button type="button" class="ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close" title="">
+                <span class="ui-button-icon ui-icon ui-icon-closethick"></span>
+            </button>
+        </div>
+        <div id="keyPad" class="calc_container ui-dialog-content ui-widget-content" style="width: auto; display: block;">
+            <div id="mainContentArea">
+                <input id="keyPad_UserInput1" class="keyPad_TextBox1" readonly type="text" style="width: 188px !important;">
+                <div class="text_container">
+                    <input id="keyPad_UserInput" class="keyPad_TextBox" maxlength="30" readonly type="text" style="width: 188px !important;">
+                    <span id="memory" class="memoryhide importantRuleMemory1" style="height: 22px; right: 192px;">
+                        <font size="2">M</font>
+                    </span>
+                </div>
+                <div class="clear"></div>
+                <div class="left_sec">
+                    <div class="calc_row clear">
+                        <a id="keyPad_MC" class="keyPad_btnMemoryOp" style="margin-right: 3px;">MC</a>
+                        <a id="keyPad_MR" class="keyPad_btnMemoryOp" style="margin-right: 3px;">MR</a>
+                        <a id="keyPad_MS" class="keyPad_btnMemoryOp" style="margin-right: 3px;">MS</a>
+                        <a id="keyPad_M+" class="keyPad_btnMemoryOp" style="margin-right: 3px;">M+</a>
+                        <a id="keyPad_M-" class="keyPad_btnMemoryOp" style="margin-right: 3px;">M-</a>
+                    </div>
+                    <div class="calc_row clear">
+                        <a id="keyPad_btnBack" class="keyPad_btnCommand calc_arrows" style="width: 72px !important;">
+                            <div style="position: relative; top: -3px">←</div>
+                        </a>
+                        <a id="keyPad_btnAllClr" class="keyPad_btnCommand" style="margin-right: 3px;">C</a>
+                        <a id="keyPad_btnInverseSign" class="keyPad_btnUnaryOp" style="margin-right: 3px;">+/-</a>
+                        <a id="keyPad_btnSquareRoot" class="keyPad_btnUnaryOp" style="margin-right: 3px;">
+                            <div style="position: relative; top: 1px">√</div>
+                        </a>
+                    </div>
+                    <div class="calc_row clear" style="margin-top: 5px;">
+                        <a id="keyPad_btn7" class="keyPad_btnNumeric" style="margin-right: 3px;">7</a>
+                        <a id="keyPad_btn8" class="keyPad_btnNumeric" style="margin-right: 3px;">8</a>
+                        <a id="keyPad_btn9" class="keyPad_btnNumeric" style="margin-right: 3px;">9</a>
+                        <a id="keyPad_btnDiv" class="keyPad_btnBinaryOp" style="margin-right: 3px;">/</a>
+                        <a id="keyPad_%" class="keyPad_btnBinaryOp" style="margin-right: 3px;">%</a>
+                    </div>
+                    <div class="calc_row clear">
+                        <a id="keyPad_btn4" class="keyPad_btnNumeric" style="margin-right: 3px;">4</a>
+                        <a id="keyPad_btn5" class="keyPad_btnNumeric" style="margin-right: 3px;">5</a>
+                        <a id="keyPad_btn6" class="keyPad_btnNumeric" style="margin-right: 3px;">6</a>
+                        <a id="keyPad_btnMult" class="keyPad_btnBinaryOp" style="margin-right: 3px;">
+                            <div style="position: relative; top: 3px; font-size: 20px">*</div>
+                        </a>
+                        <a id="keyPad_btnInverse" class="keyPad_btnUnaryOp" style="margin-right: 3px;"><span class="baseele">1/x</span></a>
+                    </div>
+                    <div class="calc_row clear">
+                        <a id="keyPad_btn1" class="keyPad_btnNumeric" style="margin-right: 3px;">1</a>
+                        <a id="keyPad_btn2" class="keyPad_btnNumeric" style="margin-right: 3px;">2</a>
+                        <a id="keyPad_btn3" class="keyPad_btnNumeric" style="margin-right: 3px;">3</a>
+                        <a id="keyPad_btnMinus" class="keyPad_btnBinaryOp" style="margin-right: 3px;">
+                            <div style="position: relative; top: -1px; font-size: 20px">-</div>
+                        </a>
+                    </div>
+                    <div class="calc_row clear">
+                        <a id="keyPad_btn0" class="keyPad_btnNumeric" style="width: 72px !important;">0</a>
+                        <a id="keyPad_btnDot" class="keyPad_btnNumeric" style="margin-right: 3px;">.</a>
+                        <a id="keyPad_btnPlus" class="keyPad_btnBinaryOp" style="margin-right: 3px;">+</a>
+                        <a id="keyPad_btnEnter" class="keyPad_btnCommand importantRule1" style="height: 53px !important;">
+                            <div style="margin-bottom: 2px;">=</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="cat-disclaimer">
+        <p>
+            <strong>Disclaimer:</strong> This CAT calculator is a simulation of the on-screen calculator available in
+            the CAT CBT exam. There might be bugs or differences from the official calculator. If you find any issues,
+            please report them by raising an issue on our
+            <a href="https://github.com/yourusername/your-cat-calculator-repo" target="_blank" rel="noopener" id="github-link">GitHub</a>.
+        </p>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <script src="./calciLogic.js"></script>
+    <script>
+        $(function () {
+            $('.ui-dialog').draggable({
+                handle: '.ui-dialog-titlebar'
+            });
+        });
+    </script>
+</body>
+
+</html>
