@@ -72,8 +72,7 @@
 
 <body>
     <div class="cat-watermark">CAT CALCULATOR</div>
-    <div class="ui-dialog ui-corner-all ui-widget ui-widget-content ui-front"
-        style="position: absolute; width: 225px;">
+    <div class="ui-dialog ui-corner-all ui-widget ui-widget-content ui-front" style="position: absolute; width: 225px;">
         <div class="ui-dialog-titlebar ui-corner-all ui-widget-header ui-helper-clearfix ui-draggable-handle">
             <span class="ui-dialog-title">Calculator</span>
             <button type="button" class="ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close"
@@ -109,23 +108,21 @@
                         <a id="keyPad_btnAllClr" class="keyPad_btnCommand" style="margin-right: 3px;">C</a>
                         <a id="keyPad_btnInverseSign" class="keyPad_btnUnaryOp" style="margin-right: 3px;">+/-</a>
                         <a id="keyPad_btnSquareRoot" class="keyPad_btnUnaryOp" style="margin-right: 3px;">
-                            <div style="position: relative; top: 1px">√</div>
+                            <div style="position: relative; top: 1px; font-size: 19px;">√</div>
                         </a>
                     </div>
                     <div class="calc_row clear" style="margin-top: 5px;">
                         <a id="keyPad_btn7" class="keyPad_btnNumeric" style="margin-right: 3px;">7</a>
                         <a id="keyPad_btn8" class="keyPad_btnNumeric" style="margin-right: 3px;">8</a>
                         <a id="keyPad_btn9" class="keyPad_btnNumeric" style="margin-right: 3px;">9</a>
-                        <a id="keyPad_btnDiv" class="keyPad_btnBinaryOp" style="margin-right: 3px;">/</a>
-                        <a id="keyPad_%" class="keyPad_btnBinaryOp" style="margin-right: 3px;">%</a>
+                        <a id="keyPad_btnDiv" class="keyPad_btnBinaryOp" style="margin-right: 3px; font-size: 18px;">/</a>
+                        <a id="keyPad_%" class="keyPad_btnBinaryOp" style="margin-right: 3px;  font-size: 19px;">%</a>
                     </div>
                     <div class="calc_row clear">
                         <a id="keyPad_btn4" class="keyPad_btnNumeric" style="margin-right: 3px;">4</a>
                         <a id="keyPad_btn5" class="keyPad_btnNumeric" style="margin-right: 3px;">5</a>
                         <a id="keyPad_btn6" class="keyPad_btnNumeric" style="margin-right: 3px;">6</a>
-                        <a id="keyPad_btnMult" class="keyPad_btnBinaryOp" style="margin-right: 3px;">
-                            <div style="position: relative; top: 3px; font-size: 20px">*</div>
-                        </a>
+                        <a id="keyPad_btnMult" class="keyPad_btnBinaryOp" style="margin-right: 3px; font-size: 23px; padding-top: 4px;">*</a>
                         <a id="keyPad_btnInverse" class="keyPad_btnUnaryOp" style="margin-right: 3px;"><span
                                 class="baseele">1/x</span></a>
                     </div>
@@ -133,14 +130,12 @@
                         <a id="keyPad_btn1" class="keyPad_btnNumeric" style="margin-right: 3px;">1</a>
                         <a id="keyPad_btn2" class="keyPad_btnNumeric" style="margin-right: 3px;">2</a>
                         <a id="keyPad_btn3" class="keyPad_btnNumeric" style="margin-right: 3px;">3</a>
-                        <a id="keyPad_btnMinus" class="keyPad_btnBinaryOp" style="margin-right: 3px;">
-                            <div style="position: relative; top: -1px; font-size: 20px">-</div>
-                        </a>
+                        <a id="keyPad_btnMinus" class="keyPad_btnBinaryOp" style="margin-right: 3px; font-size: 23px; padding-top: 1px;">-</a>
                     </div>
                     <div class="calc_row clear">
                         <a id="keyPad_btn0" class="keyPad_btnNumeric" style="width: 72px !important;">0</a>
-                        <a id="keyPad_btnDot" class="keyPad_btnNumeric" style="margin-right: 3px;">.</a>
-                        <a id="keyPad_btnPlus" class="keyPad_btnBinaryOp" style="margin-right: 3px;">+</a>
+                        <a id="keyPad_btnDot" class="keyPad_btnNumeric" style="margin-right: 3px; font-size: 20px;">.</a>
+                        <a id="keyPad_btnPlus" class="keyPad_btnBinaryOp" style="margin-right: 3px; font-size: 22px;">+</a>
                         <a id="keyPad_btnEnter" class="keyPad_btnCommand importantRule1"
                             style="height: 53px !important;">
                             <div style="margin-bottom: 2px;">=</div>
@@ -162,7 +157,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
     <!-- Add Touch Punch for mobile draggable support -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
     <script src="./calciLogic.js"></script>
     <script>
         function centerCalculator() {
