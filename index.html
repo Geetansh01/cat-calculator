@@ -13,13 +13,29 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CAT Calculator - CBT Exam Practice Tool</title>
+    <title>CAT On Screen Calculator - Virtual Calculator for CAT Exam</title>
     <meta name="description"
-        content="Practice with a CAT calculator that simulates the on-screen calculator available in the CAT CBT exam. Perfect for candidates preparing for the CAT exam at home.">
+        content="Use the CAT On Screen Calculator to practice for the CAT exam. This virtual calculator simulates the official CAT CBT calculator for accurate preparation.">
     <meta name="keywords"
-        content="CAT calculator, CAT exam calculator, CAT CBT calculator, on-screen calculator, CAT practice, CAT exam, CAT 2024, CAT online calculator, CAT mock test tools">
+        content="CAT On Screen Calculator, CAT virtual calculator, CAT exam calculator, CAT CBT calculator, CAT practice tools, CAT mock test calculator">
     <meta name="author" content="Your Name">
-    <link rel="canonical" href="https://yourdomain.com/cat-calculator">
+    <link rel="canonical" href="https://yourdomain.com/cat-on-screen-calculator">
+    <!-- Add structured data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "CAT On Screen Calculator",
+        "url": "https://cat-calculator-delta.vercel.app/",
+        "description": "A virtual CAT calculator that simulates the official CAT CBT calculator. Perfect for CAT exam preparation.",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "All",
+        "author": {
+            "@type": "Person",
+            "name": "Geetansh"
+        }
+    }
+    </script>
     <link href="./jquery-ui.css" rel="stylesheet">
     <link href="./style.css" rel="stylesheet">
     <style>
@@ -183,6 +199,14 @@
         $(window).on('resize', function () {
             centerCalculator();
         });
+
+        // Dynamically add the current year to the title and meta description
+        const currentYear = new Date().getFullYear();
+        document.title = `CAT On Screen Calculator ${currentYear} - Virtual Calculator for CAT Exam`;
+        document.querySelector('meta[name="description"]').setAttribute(
+            'content',
+            `Use the CAT On Screen Calculator ${currentYear} to practice for the CAT exam. This virtual calculator simulates the official CAT CBT calculator for accurate preparation.`
+        );
     </script>
 </body>
 
