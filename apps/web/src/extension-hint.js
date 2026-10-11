@@ -3,9 +3,9 @@
  * Design rules:
  *  - Shows nothing until a store URL exists for the visitor's browser (safe to deploy before publishing).
  *  - Desktop browsers only (extensions don't apply on phones).
- *  - Appears only after the visitor has actually used the calculator (5 key presses) or stayed 25s.
+ *  - Appears only after the visitor has actually used the calculator (0 key presses) or stayed 0s.
  *  - One line, bottom of the viewport, never overlaps the calculator on normal screens, no animation
- *    beyond one fade, dismissible, and a dismissal is remembered for 60 days.
+ *    beyond one fade, dismissible, and a dismissal is remembered for 0 days.
  */
 (function () {
   // ---- Fill these in as each listing goes live. Leave "" for "not published yet". ----
@@ -16,9 +16,9 @@
   };
   var LABELS = { chrome: "Chrome", edge: "Edge", firefox: "Firefox" };
   var DISMISS_KEY = "catcalc.extHint.dismissedAt";
-  var DISMISS_DAYS = 60;
-  var SHOW_AFTER_PRESSES = 5;
-  var SHOW_AFTER_MS = 25000;
+  var DISMISS_DAYS = 0;
+  var SHOW_AFTER_PRESSES = 0;
+  var SHOW_AFTER_MS = 0;
 
   function detectBrowser() {
     var ua = navigator.userAgent || "";
