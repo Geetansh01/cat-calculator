@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-V4GSQDEGQS"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-V4GSQDEGQS');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAT On Screen Calculator - Virtual Calculator for CAT Exam</title>
+    <meta name="description"
+        content="Use the CAT On Screen Calculator to practice for the CAT exam. This virtual calculator simulates the official CAT calculator for accurate preparation.">
+    <meta name="keywords"
+        content="CAT On Screen Calculator, CAT virtual calculator, CAT exam calculator, CAT calculator, CAT practice tools, CAT mock test calculator">
+    <meta name="author" content="Your Name">
+    <link rel="canonical" href="https://cat-calculator-delta.vercel.app/">
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+    <!-- Add structured data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "CAT On Screen Calculator",
+        "url": "https://cat-calculator-delta.vercel.app/",
+        "description": "A virtual CAT calculator that simulates the official CAT calculator. Perfect for CAT exam preparation.",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "All",
+        "author": {
+            "@type": "Person",
+            "name": "Geetansh"
+        }
+    }
+    </script>
+    <link href="./jquery-ui.css" rel="stylesheet">
+    <link href="./style.css" rel="stylesheet">
+    <link href="./extension-hint.css" rel="stylesheet">
+    <style>
+        body {
+            background: #000;
+            margin: 0;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .cat-watermark {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            z-index: 0;
+            transform: translate(-50%, -50%) rotate(-20deg);
+            font-size: 7vw;
+            color: #222;
+            opacity: 0.13;
+            pointer-events: none;
+            user-select: none;
+            white-space: nowrap;
+            font-family: Arial, sans-serif;
+            letter-spacing: 0.2em;
+        }
+
+        .cat-disclaimer {
+            color: #aaa;
+            background: transparent;
+            font-size: 0.95em;
+            text-align: center;
+            margin: 40px 0 10px 0;
+            padding: 0 10px;
+            z-index: 10;
+            position: relative;
+        }
+
+        .cat-disclaimer a {
+            color: #4fa3ff;
+            text-decoration: underline;
+        }
+
+        /* The title-bar close button has no action on the website (it is for the extension overlay). */
+        .ui-dialog-titlebar-close {
+            display: none;
+        }
+
+        @media (max-width: 600px) {
+            .cat-watermark {
+                font-size: 13vw;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cat-watermark">CAT CALCULATOR</div>
+    <!--@@CALCULATOR@@-->
+    <div class="cat-disclaimer">
+        <p>
+            <strong>Disclaimer:</strong> This CAT calculator is a simulation of the on-screen calculator available in
+            the CAT exam. There might be bugs or differences from the official calculator. If you find any issues,
+            please report them by raising an issue on our
+            <a href="https://github.com/Geetansh01/cat-calculator/issues" target="_blank" rel="noopener"
+                id="github-link">GitHub</a>.
+            &nbsp;<a href="./privacy.html">Privacy</a>
+        </p>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <!-- Add Touch Punch for mobile draggable support -->
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+    <script src="./calciLogic.js"></script>
+    <script src="./extension-hint.js"></script>
+    <script>
+        function centerCalculator() {
+            var $dialog = $('.ui-dialog');
+            var winWidth = $(window).width();
+            var winHeight = $(window).height();
+            var dialogWidth = $dialog.outerWidth();
+            var dialogHeight = $dialog.outerHeight();
+            var left = Math.max(0, (winWidth - dialogWidth) / 2);
+            var top = Math.max(0, (winHeight - dialogHeight) / 2);
+            $dialog.css({ left: left + 'px', top: top + 'px' });
+        }
+
+        $(function () {
+            $('.ui-dialog').draggable({
+                handle: '.ui-dialog-titlebar'
+            });
+            centerCalculator();
+        });
+
+        // Recenter on window resize (optional, for better UX)
+        $(window).on('resize', function () {
+            centerCalculator();
+        });
+
+        // Dynamically add the current year to the title and meta description
+        const currentYear = new Date().getFullYear();
+        document.title = `CAT On Screen Calculator ${currentYear} - Virtual Calculator for CAT Exam`;
+        document.querySelector('meta[name="description"]').setAttribute(
+            'content',
+            `Use the CAT On Screen Calculator ${currentYear} to practice for the CAT exam. This virtual calculator simulates the official CAT calculator for accurate preparation.`
+        );
+    </script>
+</body>
+
+</html>

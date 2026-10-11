@@ -1,0 +1,46 @@
+.ext-hint {
+    position: fixed;
+    left: 50%;
+    bottom: 14px;
+    transform: translateX(-50%);
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    max-width: min(92vw, 640px);
+    padding: 8px 8px 8px 14px;
+    border: 1px solid #2c2c2c;
+    border-radius: 8px;
+    background: rgba(18, 18, 18, 0.92);
+    color: #9a9a9a;
+    font: 13px/1.4 Arial, sans-serif;
+    animation: ext-hint-in 0.6s ease both;
+}
+
+.ext-hint a {
+    color: #4fa3ff;
+    text-decoration: underline;
+    white-space: nowrap;
+}
+
+.ext-hint-close {
+    flex: none;
+    width: 24px;
+    height: 24px;
+    margin-left: 4px;
+    padding: 0;
+    border: 0;
+    border-radius: 4px;
+    background: transparent;
+    color: #777;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.ext-hint-close:hover { color: #ddd; background: #2a2a2a; }
+.ext-hint a:focus-visible,
+.ext-hint-close:focus-visible { outline: 2px solid #4fa3ff; outline-offset: 2px; }
+
+@keyframes ext-hint-in { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .ext-hint { animation: none; } }
+@media (max-width: 600px) { .ext-hint { display: none; } }

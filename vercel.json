@@ -1,0 +1,5 @@
+{
+  "buildCommand": "npm run build:web",
+  "outputDirectory": "dist/web",
+  "installCommand": "echo \"no dependencies\""
+}

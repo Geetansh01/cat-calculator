@@ -1,0 +1,18 @@
+{
+  "name": "cat-calculator",
+  "private": true,
+  "version": "1.0.0",
+  "description": "CAT On Screen Calculator - website + browser extension, one shared core.",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs all",
+    "build:web": "node scripts/build.mjs web",
+    "build:ext": "node scripts/build.mjs extension",
+    "dev": "node scripts/build.mjs web && node scripts/serve.mjs dist/web",
+    "package": "node scripts/build.mjs extension --zip",
+    "test:ext": "node scripts/build.mjs extension --test && node tests/extension.e2e.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
