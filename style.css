@@ -186,7 +186,7 @@ padding:10px;
 }
 #keyPad_btnEnter:active,#nkeyPad_btnEnter:active  {
 	position:absolute !important;	
-	bottom:17px !important;  
+	/* bottom:17px !important;   /* This button shift leads to bug where bottom portion of the "=" button is not responsive */
 }
 #keyPad a:hover,#nkeyPad a:hover  {
     background: #eaeaea;
