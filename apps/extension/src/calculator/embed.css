@@ -1,0 +1,17 @@
+/* Extension-only layout for the shared calculator page. */
+:root { color-scheme: light; }
+html, body { margin: 0; padding: 0; background: transparent; overflow: hidden; }
+.ui-dialog { position: absolute !important; left: 0 !important; top: 0 !important; margin: 0; }
+
+/* jquery-ui's icon sprite isn't shipped; draw the close glyph in CSS instead. */
+.ui-dialog .ui-dialog-titlebar-close {
+  background: transparent; border: 0; border-radius: 4px; cursor: pointer; padding: 0;
+  color: #fff; font: 700 14px/20px Arial, sans-serif; text-indent: 0;
+}
+.ui-dialog .ui-dialog-titlebar-close .ui-icon { display: none; }
+.ui-dialog .ui-dialog-titlebar-close::before { content: "\2715"; }
+.ui-dialog .ui-dialog-titlebar-close:hover { background: rgba(255, 255, 255, .2); }
+.ui-dialog .ui-dialog-titlebar-close:focus-visible { outline: 2px solid #fff; outline-offset: 1px; }
+
+/* The title bar is a drag handle in the parent page. */
+.ui-dialog-titlebar { cursor: move; user-select: none; }
