@@ -1,7 +1,7 @@
 {
   "name": "cat-calculator",
   "private": true,
-  "version": "1.0.0",
+  "version": "check manifest.base.json for version",
   "description": "CAT On Screen Calculator - website + browser extension, one shared core.",
   "type": "module",
   "scripts": {

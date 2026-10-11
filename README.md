@@ -250,15 +250,48 @@ Run it with `npm run test:ext`. Not covered: Firefox, Edge (it uses the Chrome p
 
 ## 9. Publishing the extension
 
-Package once, publish three times: **one Chrome zip serves Chrome and Edge**, plus one Firefox zip. `npm run package` creates both in `dist/`. The complete walkthrough is in [`docs/STORE_SUBMISSION.md`](docs/STORE_SUBMISSION.md); paste-ready listing text, single-purpose statement, permission justifications and reviewer notes are in [`apps/extension/store/listing.md`](apps/extension/store/listing.md).
+Package once, publish three times: **one Chrome zip serves Chrome and Edge**, plus one Firefox zip. The complete store-by-store walkthrough is in [`docs/STORE_SUBMISSION.md`](docs/STORE_SUBMISSION.md); paste-ready listing text, single-purpose statement, permission justifications and reviewer notes are in [`apps/extension/store/listing.md`](apps/extension/store/listing.md).
 
-**Before the first submission**
+### Build and package commands
+
+| Command | What it does |
+|---|---|
+| `npm run build` | Rebuilds the website into `dist/web` and both extensions into `dist/extension-chrome` and `dist/extension-firefox`. **Does not make zips.** |
+| `npm run package` | Rebuilds **only the two extensions**, then zips them into `dist/cat-calculator-chrome-vX.Y.Z.zip` and `dist/cat-calculator-firefox-vX.Y.Z.zip`. Does not touch the website. |
+| `npm run dev` | Builds and serves the **website only** at http://localhost:5173. Unrelated to packaging. |
+
+You do **not** need to run `dev` or `build` before `package`. Every build deletes its output folder and recopies everything from `packages/core` and `apps/extension/src`, so each package always contains the latest calculator logic.
+
+Practical notes:
+- `build` never deletes old zips, so `dist/` can contain stale ones. **Check the version in the filename before uploading.**
+- The script uses the `zip` command. If your machine doesn't have it (Windows Git Bash sometimes doesn't), the script prints a warning and you must zip the *contents* of `dist/extension-chrome` yourself. `manifest.json` must be at the root of the zip, not inside a subfolder.
+
+### Versioning
+
+**Where versions live**
+- **Extension:** one place only, `version` in `apps/extension/manifest.base.json`. The build copies it into each browser's manifest and into the zip filenames.
+- **`vercel.json` has nothing to do with versions.** It only tells Vercel how to build the website.
+- **Website:** has no version number. Every merge to `main` deploys, and the Git commit is its version.
+- The website and extension are linked only by being built from the same commit.
+
+**Store rules**
+- **Chrome and Edge:** one to four dot-separated whole numbers (e.g. `1.0.1`). Each upload must be higher than the version currently published for that listing.
+- **Firefox:** a version number can never be reused, even if that submission was rejected, and updates must go up.
+- You choose the numbers yourself. Nothing else is mandated.
+
+**Recommended practice**
+- **Numbering:** use semantic versioning and keep **one version number across all three stores**. Bump the last digit for bug fixes (`1.0.1`), the middle for new features (`1.1.0`), and the first only for a major overhaul.
+- **Tracking:** tag the exact commit you submitted as `ext-v1.0.1` and push the tag. Create a GitHub Release from that tag and attach the zips you actually uploaded. The zips stay out of the repo (`dist/` and `*.zip` are gitignored).
+- **Keep your own copies of submitted zips.** Firefox keeps your version history, but don't count on Chrome or Edge for old copies.
+- **If a store rejects a build:** fix it, bump the last digit for all three stores, and resubmit, so tags and version numbers stay consistent.
+
+### Before the first submission
 1. Deploy the website so `/privacy.html` is live (the stores require a privacy policy URL).
 2. In `scripts/build.mjs`, replace the Firefox add-on ID (`gecko.id`, marked TODO) with one you control. **It can never change after the first submission.**
 3. Smoke-test the Firefox build manually (section 3, step 6).
 4. Replace the screenshots in `apps/extension/store/screenshots/` with real 1280x800 ones (the included ones use a mock page). Optionally add a 440x280 promo tile for Chrome.
 
-**Per store (summary)**
+### Per store (summary)
 - **Chrome Web Store:** developer account (one-time fee, currently US$5) -> upload the Chrome zip -> listing (category Education), privacy tab (single purpose, permission justifications, remote code: No, data usage: none, policy URL) -> submit. Don't keyword-stuff the title or description.
 - **Microsoft Edge Add-ons:** free Partner Center account -> upload the *same* Chrome zip -> listing, category, policy URL, certification notes ("click the icon on any website") -> submit.
 - **Firefox (AMO):** free account -> upload the Firefox zip as a listed add-on. Source code is only requested for generated/minified code; everything first-party is hand-written, and `jquery-3.6.0.min.js` is the unmodified official build, so say so in the reviewer notes.
@@ -266,7 +299,17 @@ Package once, publish three times: **one Chrome zip serves Chrome and Edge**, pl
 
 Store policies and fees change; re-check each dashboard at submission time.
 
-**After a release:** tag the commit `ext-vX.Y.Z`, keep the submitted zips, and when each listing goes live add its URL to `STORE_URLS` (section 6). Bump `version` in `apps/extension/manifest.base.json` for every new submission.
+### Release routine
+1. Merge your work to `main`.
+2. Bump `version` in `apps/extension/manifest.base.json`, commit and push.
+3. Run `npm run package`.
+4. Upload the Chrome zip to both Chrome Web Store and Edge Add-ons, and the Firefox zip to AMO.
+5. Tag `ext-vX.Y.Z`, push the tag, and attach the zips to a GitHub Release.
+6. When each listing goes live (first release only), add its URL to `STORE_URLS` (section 6) and deploy the website.
+
+### When an extension release is needed
+- A fix in `packages/core` redeploys the website automatically when merged. The extension only changes when you publish a new version, so any extension-visible fix needs a version bump and a store submission. Users then receive it automatically once the store approves it.
+- A website-only change (hint wording, SEO text, disclaimer) needs **no** extension release.
 
 ---
 
