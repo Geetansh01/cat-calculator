@@ -32,4 +32,15 @@
   }
   if (document.readyState === "complete") reportSize();
   else window.addEventListener("load", reportSize);
+
+  // The calculator can change height after load (e.g. pressing M+ shows the "M" memory
+  // indicator, which adds a line). Tell the overlay each time so its frame never clips the keys.
+  if (window.ResizeObserver) {
+    var scheduled = false;
+    new ResizeObserver(function () {
+      if (scheduled) return;
+      scheduled = true;
+      requestAnimationFrame(function () { scheduled = false; reportSize(); });
+    }).observe(dialog);
+  }
 })();
