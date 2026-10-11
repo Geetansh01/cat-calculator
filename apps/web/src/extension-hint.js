@@ -11,7 +11,7 @@
   // ---- Fill these in as each listing goes live. Leave "" for "not published yet". ----
   var STORE_URLS = {
     chrome: "",   // https://chromewebstore.google.com/detail/<slug>/<id>
-    edge: "",     // https://microsoftedge.microsoft.com/addons/detail/<slug>/<id>
+    edge: "https://microsoftedge.microsoft.com/addons/detail/lgikacifhknbbdnhjdhboaeajofglccb",     // https://microsoftedge.microsoft.com/addons/detail/<slug>/<id>
     firefox: ""   // https://addons.mozilla.org/firefox/addon/<slug>/
   };
   var LABELS = { chrome: "Chrome", edge: "Edge", firefox: "Firefox" };
